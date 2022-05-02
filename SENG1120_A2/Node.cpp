@@ -4,9 +4,9 @@
 // Course: SENG1120
 // Student Number: c3336019
 
-// this class will be used as data holders for a linked list
+// This class will be used as data holders for a linked list
 
-// constructors
+// Constructors
 template <typename T>
 Node<T>::Node()
 {
@@ -14,11 +14,11 @@ Node<T>::Node()
     previous = NULL;
 }
 
-// empty destructor
+// Empty destructor
 template <typename T>
 Node<T>::~Node() {}
 
-// setters
+// Setters
 template <typename T>
 void Node<T>::set_next(Node<T> *next_)
 {
@@ -37,7 +37,7 @@ void Node<T>::set_data(T &node_data_)
     node_data = node_data_;
 }
 
-// getters - use const when we can and non const when we must alter the state of the object
+// Getters - use const when we can and non const when we must alter the state of the object
 template <typename T>
 const Node<T> *Node<T>::get_next() const
 {
@@ -68,4 +68,5 @@ T &Node<T>::get_data()
     return node_data;
 }
 
+// Include this line to make int a recognisable type
 template class Node<int>;

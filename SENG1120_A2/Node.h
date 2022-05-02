@@ -6,18 +6,18 @@
 
 #include <cstdlib>
 
-// this class will serve as data containers for our linked list
+// This class will serve as data containers for our linked list
 template <class T>
 class Node
 {
 public:
-    // initialising constructor
+    // Initialising constructor
     Node();
 
-    // initialise empty destructor
+    // Initialise empty destructor
     ~Node();
 
-    // initialise getters and setters
+    // Initialise getters and setters
     void set_next(Node<T> *next_);
     void set_previous(Node<T> *previous_);
     void set_data(T &node_data_);
@@ -28,7 +28,7 @@ public:
     Node<T> *get_previous();
     T &get_data();
 
-    // declare private member variables
+    // Declare private member variables
 private:
     Node *next;
     Node *previous;
