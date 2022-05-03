@@ -1,6 +1,8 @@
 // Author: Johanne Montano
 // Course: SENG1120
 // Student Number: c3336019
+
+// Macroguard
 #ifndef NODE_H
 #define NODE_H
 
