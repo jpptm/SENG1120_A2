@@ -20,14 +20,12 @@ public:
     ~Node();
 
     // Initialise getters and setters
-    void set_next(Node<T> *next_);
-    void set_previous(Node<T> *previous_);
-    void set_data(T &node_data_);
+    void set_next(Node *next_);
+    void set_previous(Node *previous_);
+    void set_data(const T &node_data_);
 
-    const Node<T> *get_next() const;
-    Node<T> *get_next();
-    const Node<T> *get_previous() const;
-    Node<T> *get_previous();
+    Node *get_next();
+    Node *get_previous();
     T &get_data();
 
     // Declare private member variables

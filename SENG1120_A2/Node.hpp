@@ -21,36 +21,24 @@ Node<T>::~Node() {}
 
 // Setters
 template <typename T>
-void Node<T>::set_next(Node<T> *next_)
+void Node<T>::set_next(Node *next_)
 {
     next = next_;
 }
 
 template <typename T>
-void Node<T>::set_previous(Node<T> *previous_)
+void Node<T>::set_previous(Node *previous_)
 {
     previous = previous_;
 }
 
 template <typename T>
-void Node<T>::set_data(T &node_data_)
+void Node<T>::set_data(const T &node_data_)
 {
     node_data = node_data_;
 }
 
 // Getters - use const when we can and non const when we must alter the state of the object
-template <typename T>
-const Node<T> *Node<T>::get_next() const
-{
-    return next;
-}
-
-template <typename T>
-const Node<T> *Node<T>::get_previous() const
-{
-    return previous;
-}
-
 template <typename T>
 Node<T> *Node<T>::get_next()
 {
