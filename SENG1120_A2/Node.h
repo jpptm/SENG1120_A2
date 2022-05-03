@@ -34,4 +34,8 @@ private:
     Node *previous;
     T node_data;
 };
+
+// Include to let compiler know implementation is in Node.hpp
+#include "Node.hpp"
+
 #endif // NODE_H
