@@ -38,7 +38,7 @@ void LinkedList<T>::add_to_head(const T &node_data)
     Node<T> *new_node = new Node<T>();
     new_node->set_data(node_data);
 
-    // Make new node as new head and update all pointers
+    // Make new node as new head and update all relevant pointers
     if (list_length != 0)
     {
         new_node->set_next(head);
@@ -47,6 +47,7 @@ void LinkedList<T>::add_to_head(const T &node_data)
         new_node->set_previous(NULL);
 
         head = new_node;
+        current = head;
 
         // Increment list length
         list_length++;
@@ -139,21 +140,21 @@ void LinkedList<T>::add_to_tail(const T &node_data)
 template <typename T>
 T &LinkedList<T>::get_from_head()
 {
-    return head;
+    return head->get_data();
 }
 
 // Get current node of LL
 template <typename T>
 T &LinkedList<T>::get_from_current()
 {
-    return current;
+    return current->get_data();
 }
 
 // Get tail node of LL
 template <typename T>
 T &LinkedList<T>::get_from_tail()
 {
-    return tail;
+    return tail->get_data();
 }
 
 // Remove head node
@@ -166,20 +167,37 @@ T LinkedList<T>::remove_from_head()
         // Get data within node before deletion and return it
         T payload = head->get_data();
 
-        // Set head's next as new head, delete head and make sure new head points to null
-        Node<T> *new_head = head->get_next();
-        delete head;
-        head = new_head;
-        head->set_previous(NULL);
+        // Set head's next as new head, delete head, make sure new head points to null and reset current to head
+        if (head->get_next() != NULL)
+        {
+            Node<T> *new_head = head->get_next();
+            delete head;
+            head = new_head;
+            head->set_previous(NULL);
 
-        // Decrement list length
-        list_length--;
+            current = head;
+
+            // Decrement list length
+            list_length--;
+        }
+
+        // If next is NULL that means its the only node in the LL
+        else
+        {
+            delete head;
+            list_length--;
+        }
 
         return payload;
     }
+
+    else
+    {
+        return 0;
+    }
 }
 
-// Remove current node - must only use this function if LL has length > 2
+// Remove current node - must only use this function if LL has length > 2 - use only if absolutely needed
 template <typename T>
 T LinkedList<T>::remove_from_current()
 {
@@ -205,6 +223,11 @@ T LinkedList<T>::remove_from_current()
 
         return payload;
     }
+
+    else
+    {
+        return 0;
+    }
 }
 
 // Remove tail node
@@ -217,17 +240,32 @@ T LinkedList<T>::remove_from_tail()
         // Get tail data before deletion and return it afterwards
         T payload = tail->get_data();
 
-        // Get tail's previous, set that as new tail, delete current tail, make sure new tail points to NULL, return data
-        Node<T> *new_tail = tail->get_previous();
+        if (tail->get_previous() != NULL)
+        {
+            // Get tail's previous, set that as new tail, delete current tail, make sure new tail points to NULL, return data
+            Node<T> *new_tail = tail->get_previous();
 
-        delete tail;
-        tail = new_tail;
-        tail->set_next(NULL);
+            delete tail;
+            tail = new_tail;
+            tail->set_next(NULL);
 
-        // Decrement list length
-        list_length--;
+            // Decrement list length
+            list_length--;
+        }
+
+        // If below is the case then tail is the only LL within the list
+        else
+        {
+            delete tail;
+            list_length--;
+        }
 
         return payload;
+    }
+
+    else
+    {
+        return 0;
     }
 }
 
