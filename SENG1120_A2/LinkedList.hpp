@@ -1,4 +1,4 @@
-// Implementation
+// Implementation for LinkedList.h is here
 #include "LinkedList.h"
 
 // Author: Johanne Montano
