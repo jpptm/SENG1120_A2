@@ -6,8 +6,6 @@
 #ifndef NODE_H
 #define NODE_H
 
-#include <cstdlib>
-
 // This class will serve as data containers for our linked list
 template <class T>
 class Node
