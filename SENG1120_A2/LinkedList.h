@@ -24,9 +24,9 @@ public:
     void add_to_current(const T &node_data);
 
     // Getters and mutators
-    T &get_from_head();
-    T &get_from_tail();
-    T &get_from_current();
+    T &get_from_head() const;
+    T &get_from_tail() const;
+    T &get_from_current() const;
 
     T remove_from_head();
     T remove_from_tail();
