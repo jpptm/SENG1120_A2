@@ -23,7 +23,7 @@ LinkedList<T>::~LinkedList()
 
     while (temp)
     {
-        Node<T> *next = temp->getNext();
+        Node<T> *next = temp->get_next();
         delete temp;
         temp = next;
     }
