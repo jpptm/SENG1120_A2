@@ -37,15 +37,15 @@ T LStack<T>::pop()
     return data;
 }
 
+// Danger for the functions below - peeking or popping an empty list with code written this way will lead to a segfault
+// Must take care when using these functions
+// Always check if stack is empty before peeking or popping anything!
+
 // Peek value of top most element
 template <typename T>
 T &LStack<T>::peek()
 {
     T &val = LL.get_from_head();
-    if (LL.size() != 0)
-    {
-        val = LL.get_from_head();
-    }
     return val;
 }
 
