@@ -301,7 +301,7 @@ void LinkedList<T>::back()
 
 // Get list's size by returning list_length
 template <typename T>
-int LinkedList<T>::size()
+int LinkedList<T>::size() const
 {
     return list_length;
 }

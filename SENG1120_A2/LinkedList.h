@@ -39,7 +39,7 @@ public:
     void back();
 
     // Statistics
-    int size();
+    int size() const;
 
 private:
     // Include current, head and tail for LL
