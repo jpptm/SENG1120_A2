@@ -1,4 +1,5 @@
 // Implementation for Node.h is written here
+
 #include "Node.h"
 
 // Author: Johanne Montano
