@@ -1,7 +1,7 @@
 CC=g++ 
 CFLAGS=-c -Wall -std=c++98
 LDFLAGS=
-SOURCES=TowerHanoiDemo.cpp TowerHanoi.cpp Disc.h Node.h LinkedList.h LStack.h
+SOURCES=TowerHanoiDemo.cpp TowerHanoi.cpp Disc.cpp Node.h LinkedList.h LStack.h
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=a2
 

@@ -22,7 +22,10 @@ Disc::~Disc(){}
 
 // Mutator methods (setters)
 void Disc::set_value(const string valueString_, const int valueDiam_) 
-{value = valueString_; diameter = valueDiam_}
+{
+	value = valueString_; 
+	diameter = valueDiam_;
+}
 
 // Accessor methods (getters)
 string Disc::get_value() const {return value;}
