@@ -12,6 +12,7 @@ LinkedList<T>::LinkedList()
     head = NULL;
     current = NULL;
     tail = NULL;
+    list_length = 0;
 }
 
 // LinkedList destructor - destroy all nodes within LL
@@ -20,8 +21,8 @@ LinkedList<T>::~LinkedList()
 {
     // If our LinkedList is not empty go through every single node and delete it
     Node<T> *temp = head;
-
-    while (temp)
+  
+    while (temp != NULL)
     {
         Node<T> *next = temp->get_next();
         delete temp;
@@ -138,21 +139,21 @@ void LinkedList<T>::add_to_tail(const T &node_data)
 
 // Get head node of LL
 template <typename T>
-T &LinkedList<T>::get_from_head()
+T &LinkedList<T>::get_from_head() const
 {
     return head->get_data();
 }
 
 // Get current node of LL
 template <typename T>
-T &LinkedList<T>::get_from_current()
+T &LinkedList<T>::get_from_current() const
 {
     return current->get_data();
 }
 
 // Get tail node of LL
 template <typename T>
-T &LinkedList<T>::get_from_tail()
+T &LinkedList<T>::get_from_tail() const
 {
     return tail->get_data();
 }
@@ -185,6 +186,7 @@ T LinkedList<T>::remove_from_head()
         else
         {
             delete head;
+            head = NULL;
             list_length--;
         }
 
@@ -299,7 +301,7 @@ void LinkedList<T>::back()
 
 // Get list's size by returning list_length
 template <typename T>
-int LinkedList<T>::size()
+int LinkedList<T>::size() const
 {
     return list_length;
 }
