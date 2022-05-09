@@ -21,8 +21,8 @@ LinkedList<T>::~LinkedList()
 {
     // If our LinkedList is not empty go through every single node and delete it
     Node<T> *temp = head;
-
-    while (temp)
+  
+    while (temp != NULL)
     {
         Node<T> *next = temp->get_next();
         delete temp;
