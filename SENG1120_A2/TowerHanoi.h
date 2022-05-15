@@ -28,20 +28,20 @@ public:
 
     // Check if the user's chosen move is valid or not - also will alter the state of the stacks
     // If the move is valid then execute and if not, skip
-    bool move(const int rodFrom, const int rodTo);
+    bool move(int rodFrom, int rodTo);
 
     // Check the game's state, if the value is true then the game will end
-    bool checkWin() const;
+    bool checkWin();
+
+    // Make helper function to make string as ostream& output
+    ostream &printGame(ostream &finalState);
 
 private:
-    // Declare how many total discs the player wants to play with and the rods we need using stacks
-    LStack<Disc> rod1, rod2, rod3;
-
-    // Push diameter to stack
-    // --------- Disc disc; ---------
+    // Initialise each rod as a stack of discs
+    LStack<Disc> rods[3];
 };
 
-// overload << operetor to output the "UI" of the current game state
-ostream &operator<<(ostream &out, const TowerHanoi &game);
+// overload << operator to output the "UI" of the current game state
+ostream &operator<<(ostream &out, TowerHanoi &game);
 
 #endif // TOWER_HANOI_H

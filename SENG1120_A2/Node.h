@@ -13,9 +13,9 @@ template <class T>
 class Node
 {
 public:
-    // Initialising constructor
+    // Initialising constructors
     Node();
-
+    Node(Node *next, Node *previous, T data);
     // Initialise empty destructor
     ~Node();
 
@@ -24,15 +24,15 @@ public:
     void set_previous(Node *previous_);
     void set_data(const T &node_data_);
 
-    Node *get_next();
-    Node *get_previous();
+    Node *get_next() const;
+    Node *get_previous() const;
     T &get_data();
 
     // Declare private member variables
 private:
     Node *next;
     Node *previous;
-    T node_data;
+    T data;
 };
 
 // Include to let compiler know implementation is in Node.hpp
