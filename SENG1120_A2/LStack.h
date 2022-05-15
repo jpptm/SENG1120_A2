@@ -21,10 +21,16 @@ public:
     void push(T item);
     T pop();
     T &peek();
-    bool is_empty();
+    bool is_empty() const;
+
+    int length() const;
 
 private:
+    // The size variable is here so that we can keep track of the count of the elements within the stack
+    // without communicating with the LinkedList class.
+    // We just increment or decrement by 1 whenever we push or pop accordingly
     LinkedList<T> LL;
+    int size;
 };
 
 // Include hpp file to let compiler know that the implementation is there

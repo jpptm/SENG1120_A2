@@ -21,7 +21,7 @@ LinkedList<T>::~LinkedList()
 {
     // If our LinkedList is not empty go through every single node and delete it
     Node<T> *temp = head;
-  
+
     while (temp != NULL)
     {
         Node<T> *next = temp->get_next();
@@ -34,24 +34,17 @@ LinkedList<T>::~LinkedList()
 template <typename T>
 void LinkedList<T>::add_to_head(const T &node_data)
 {
-
     // Initialise new node in the heap and set node_data as its data
-    Node<T> *new_node = new Node<T>();
-    new_node->set_data(node_data);
+    Node<T> *new_node = new Node<T>(head, NULL, node_data);
 
-    // Make new node as new head and update all relevant pointers
-    if (list_length != 0)
+    // Make new node as new head and update all relevant pointers - if we have a head we can just do this
+    if (head)
     {
-        new_node->set_next(head);
+        // Set previous and reset pointers
         head->set_previous(new_node);
-
-        new_node->set_previous(NULL);
 
         head = new_node;
         current = head;
-
-        // Increment list length
-        list_length++;
     }
 
     // If list is empty just set that node as head, current and tail
@@ -60,10 +53,10 @@ void LinkedList<T>::add_to_head(const T &node_data)
         head = new_node;
         current = new_node;
         tail = new_node;
-
-        // Increment list length
-        list_length++;
     }
+
+    // Increment list length
+    list_length++;
 }
 
 // Add new node to the right of the current node - only use if list_length > 2 and current = head
@@ -74,7 +67,7 @@ void LinkedList<T>::add_to_current(const T &node_data)
     Node<T> *new_node = new Node<T>();
     new_node->set_data(node_data);
 
-    // If list is empty
+    // If list is not empty
     if (list_length != 0)
     {
         // New node's next must be current's next and previous must be current
@@ -87,9 +80,6 @@ void LinkedList<T>::add_to_current(const T &node_data)
         current_next->set_previous(new_node);
 
         current = new_node;
-
-        // Increment list length
-        list_length++;
     }
 
     // If list is empty just set that node as head, current and tail
@@ -98,10 +88,9 @@ void LinkedList<T>::add_to_current(const T &node_data)
         head = new_node;
         current = new_node;
         tail = new_node;
-
-        // Increment list length
-        list_length++;
     }
+    // Increment list length
+    list_length++;
 }
 
 template <typename T>
@@ -111,7 +100,7 @@ void LinkedList<T>::add_to_tail(const T &node_data)
     Node<T> *new_node = new Node<T>();
     new_node->set_data(node_data);
 
-    if (list_length != 0)
+    if (tail)
     {
         // Set new node as new tail and update pointers
         tail->set_next(new_node);
@@ -120,9 +109,6 @@ void LinkedList<T>::add_to_tail(const T &node_data)
         new_node->set_next(NULL);
 
         tail = new_node;
-
-        // Increment list length
-        list_length++;
     }
 
     // If list is empty just set that node as head, current and tail
@@ -131,12 +117,13 @@ void LinkedList<T>::add_to_tail(const T &node_data)
         head = new_node;
         current = new_node;
         tail = new_node;
-
-        // Increment list length
-        list_length++;
     }
+
+    // Increment list length
+    list_length++;
 }
 
+// We make sure that any functions that shouldn't alter the state of the class won't
 // Get head node of LL
 template <typename T>
 T &LinkedList<T>::get_from_head() const
@@ -162,11 +149,13 @@ T &LinkedList<T>::get_from_tail() const
 template <typename T>
 T LinkedList<T>::remove_from_head()
 {
+    T payload;
+
     // If LL is not empty
-    if (list_length != 0)
+    if (head)
     {
         // Get data within node before deletion and return it
-        T payload = head->get_data();
+        payload = head->get_data();
 
         // Set head's next as new head, delete head, make sure new head points to null and reset current to head
         if (head->get_next() != NULL)
@@ -177,25 +166,26 @@ T LinkedList<T>::remove_from_head()
             head->set_previous(NULL);
 
             current = head;
-
-            // Decrement list length
-            list_length--;
         }
 
-        // If next is NULL that means its the only node in the LL
+        // If next is NULL that means its the only node in the LL - make sure to reset pointers to avoid segfaults
         else
         {
             delete head;
             head = NULL;
-            list_length--;
+            current = NULL;
+            tail = NULL;
         }
+
+        // Decrement list length
+        list_length--;
 
         return payload;
     }
 
     else
     {
-        return 0;
+        return payload;
     }
 }
 
@@ -203,11 +193,13 @@ T LinkedList<T>::remove_from_head()
 template <typename T>
 T LinkedList<T>::remove_from_current()
 {
+    T payload;
+
     // If LL is not empty
     if (list_length != 0)
     {
         // Get data within node before deletion and return it
-        T payload = current->get_data();
+        payload = current->get_data();
 
         // Get current's next and previous nodes and link them together
         Node<T> *current_next = current->get_next();
@@ -228,7 +220,7 @@ T LinkedList<T>::remove_from_current()
 
     else
     {
-        return 0;
+        return payload;
     }
 }
 
@@ -236,11 +228,13 @@ T LinkedList<T>::remove_from_current()
 template <typename T>
 T LinkedList<T>::remove_from_tail()
 {
+    T payload;
+
     // If LL is not empty
     if (list_length != 0)
     {
         // Get tail data before deletion and return it afterwards
-        T payload = tail->get_data();
+        payload = tail->get_data();
 
         if (tail->get_previous() != NULL)
         {
@@ -267,7 +261,7 @@ T LinkedList<T>::remove_from_tail()
 
     else
     {
-        return 0;
+        return payload;
     }
 }
 
